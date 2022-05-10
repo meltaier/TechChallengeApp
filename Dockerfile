@@ -29,6 +29,9 @@ FROM alpine:latest
 WORKDIR /TechChallengeApp
 
 COPY conf.toml ./conf.toml
+COPY startupscriptwrapper.sh ./startupscriptwrapper.sh
+RUN chmod +x ./startupscriptwrapper.sh
 COPY --from=build /TechChallengeApp TechChallengeApp
 
-ENTRYPOINT [ "./TechChallengeApp" ]
+EXPOSE 3000
+ENTRYPOINT [ "./startupscriptwrapper.sh" ]
