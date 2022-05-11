@@ -10,23 +10,11 @@ pool:
   vmImage: ubuntu-latest
 
 
-jobs:
-  - deployment: deploy
-    displayName: deploy
-
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - checkout: self
-          - task: AzureCLI@2
-            inputs:
-              azureSubscription: azuresub
-              scriptType: 'bash'
-              scriptLocation: 'inlineScript'
-              inlineScript: |
-                #!/bin/bash
-                $PWD
-                ls -lrt
-                echo "Deploying Module"
-                az deployment group create --template-file containerinstance.bicep --resource-group InsertResourceGroup
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Azuresub'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'New-AzResourceGroupDeployment -Name DeployContainerGroup -ResourceGroupName InsertResourceGroup -TemplateFile containerinstance.bicep -Location australiasoutheast'
+    addSpnToEnvironment: true
