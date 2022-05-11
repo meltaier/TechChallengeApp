@@ -19,8 +19,7 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       #!/bin/bash
-      az login --service-principal --username 4c313cd7-b686-4c21-bae4-11c8e0dc2c6d --password Hy0hFldlWW_1teq0B3iNeVgLhq3cnIINKU --tenant 1df8fc01-cd21-47a3-9c05-066d7405ea78
-      az deployment group create --resource-group insertresourcegroup --template-file containerinstance.bicep
+      az deployment group create --resource-group insertresourcegroup --template-file containerinstance.bicep --registry-username meltaier --registry-password p3lHsQmQyCQJwANiDYq1K0j+y0cfUJaE
     addSpnToEnvironment: true
 
     
