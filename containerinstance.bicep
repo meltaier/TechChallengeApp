@@ -63,8 +63,6 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2021-09-01'
 
     imageRegistryCredentials:[
       {
-        identity: ''
-        identityUrl: ''
         password: 'p3lHsQmQyCQJwANiDYq1K0j+y0cfUJaE'
         server: 'meltaier.azurecr.io'
         username: 'meltaier'
