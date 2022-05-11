@@ -35,6 +35,5 @@ jobs:
               inlineScript: |
                 #!/bin/bash
                 $PWD
- 
                 echo "Deploying App"
-		New-AzResourceGroupDeployment -Name DeployContainerGroup -ResourceGroupName InsertResourceGroup -TemplateFile containerinstance.bicep -Location australiasoutheast
+		            New-AzResourceGroupDeployment -Name DeployContainerGroup -ResourceGroupName InsertResourceGroup -TemplateFile containerinstance.bicep -Location australiasoutheast
