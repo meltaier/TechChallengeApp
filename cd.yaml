@@ -14,8 +14,27 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    Install-Module -Name Az -AllowClobber -Scope CurrentUser
-    New-AzResourceGroupDeployment -Name DeployContainerGroup -ResourceGroupName InsertResourceGroup -TemplateFile containerinstance.bicep -Location australiasoutheast
+
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+jobs:
+  - deployment: deploy
+    displayName: Deploy Container
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: Azuresub
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                #!/bin/bash
+                $PWD
+ 
+                echo "Deploying App"
+		New-AzResourceGroupDeployment -Name DeployContainerGroup -ResourceGroupName InsertResourceGroup -TemplateFile containerinstance.bicep -Location australiasoutheast
