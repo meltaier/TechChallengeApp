@@ -16,5 +16,5 @@ steps:
     azureSubscription: 'Azuresub'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'New-AzResourceGroupDeployment -Name DeployContainerGroup -ResourceGroupName InsertResourceGroup -TemplateFile containerinstance.bicep -Location australiasoutheast'
+    inlineScript: 'az deployment group create --resource-group insertresourcegroup --template-file containerinstance.bicep'
     addSpnToEnvironment: true
