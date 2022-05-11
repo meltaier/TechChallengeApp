@@ -12,9 +12,15 @@ pool:
 
 steps:
 - task: AzureCLI@2
+  displayName: 'Deploy'
   inputs:
     azureSubscription: 'Azuresub'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az deployment group create --resource-group insertresourcegroup --template-file containerinstance.bicep'
+    inlineScript: |
+      #!/bin/bash
+      az login --service-principal --username 4c313cd7-b686-4c21-bae4-11c8e0dc2c6d --password Us6HTcLgEtNOCCOo8ziqY4vwB-ij57c44P --tenant 1df8fc01-cd21-47a3-9c05-066d7405ea78
+      
     addSpnToEnvironment: true
+
+    
