@@ -19,7 +19,7 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       #!/bin/bash
-      az deployment group create --resource-group insertresourcegroup --template-file containerinstance.bicep --registry-username meltaier --registry-password p3lHsQmQyCQJwANiDYq1K0j+y0cfUJaE
+      az deployment group create --resource-group insertresourcegroup --template-file containerinstance.bicep
     addSpnToEnvironment: true
 
     
