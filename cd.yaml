@@ -9,19 +9,11 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
 jobs:
   - deployment: deploy
-    displayName: Deploy Container
+    displayName: deploy
+
     strategy:
       runOnce:
         deploy:
@@ -29,11 +21,12 @@ jobs:
           - checkout: self
           - task: AzureCLI@2
             inputs:
-              azureSubscription: Azuresub
+              azureSubscription: azuresub
               scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: |
                 #!/bin/bash
                 $PWD
-                echo "Deploying App"
-		            New-AzResourceGroupDeployment -Name DeployContainerGroup -ResourceGroupName InsertResourceGroup -TemplateFile containerinstance.bicep -Location australiasoutheast
+                ls -lrt
+                echo "Deploying Module"
+                az deployment group create --template-file containerinstance.bicep --resource-group InsertResourceGroup
